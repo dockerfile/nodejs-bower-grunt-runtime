@@ -10,7 +10,7 @@ FROM dockerfile/nodejs-bower-grunt
 # Set instructions on build.
 ONBUILD ADD package.json /app/
 ONBUILD RUN \
-  bower install && \
+  bower install --allow-root && \
   npm install && \
   grunt build
 ONBUILD ADD . /app
