@@ -8,12 +8,14 @@
 FROM dockerfile/nodejs-bower-grunt
 
 # Set instructions on build.
+ONBUILD ADD bower.json /app/
+ONBUILD ADD Gruntfile.js /app/
 ONBUILD ADD package.json /app/
 ONBUILD RUN \
   bower install --allow-root && \
-  npm install && \
-  grunt build
+  npm install
 ONBUILD ADD . /app
+ONBUILD RUN grunt build
 
 # Define working directory.
 WORKDIR /app
